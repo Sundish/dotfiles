@@ -74,7 +74,7 @@ import qualified Data.Foldable   as F
 import qualified Data.Maybe      as A
 
 scratchpads = [
-  NS "htop" "kitty -T fhtop htop" (title =? "fhtop")
+  NS "htop" "st -T fhtop htop" (title =? "fhtop")
   (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)),
   NS "terminal" "st -c 'floating'" (className =? "floating")
   (customFloating $ W.RationalRect l t w h),
@@ -360,8 +360,8 @@ myKeysB = [ ("M-<R>",   spawn "xbacklight -inc 5")
           , ("M-p s", spawn "passmenu -p 'pass::store'")
 
           -- Screenshot Keybindings
-          , ("M-C-s", spawn "flameshot gui") -- Grab the selected area, saves it cache and the clipboard.
-          , ("M-s", spawn "flameshot full -c") -- Grab the selected area, saves it cache and the clipboard.
+          , ("M-s", spawn "flameshot gui") -- Grab the selected area, saves it cache and the clipboard.
+          -- , ("M-s", spawn "flameshot full -c") -- Grab the selected area, saves it cache and the clipboard.
 
           -- Layout keybindings
           , ("M-C-<Space>", sendMessage ToggleLayout)
@@ -376,9 +376,9 @@ myKeysB = [ ("M-<R>",   spawn "xbacklight -inc 5")
           , ("M-r", bindOn [ ("" , toggleFloatAllNew >> runLogHook)
                            , ("MSC", spawn "pidof /home/sundish/bin/msxiv sxiv | xargs kill -1; msxiv")])
           ]
-          ++ zipM "M-"  wsKeys [0..] (\a -> (withTagged "ghost" (\x -> withNthWorkspace (\b -> W.shiftWin b x) a))
-	  				  >> withNthWorkspace W.greedyView a
-					  >> withTagged "ghost" (\_ -> toggleFocus)) -- TODO find a way to not use two 'withTagged'
+          ++ zipM "M-"  wsKeys [0..]  (\a -> (withTagged "ghost" (\x -> withNthWorkspace (\b -> W.shiftWin b x) a))
+	  				   >> withNthWorkspace W.greedyView a
+					   >> withTagged "ghost" (\_ -> toggleFocus)) -- TODO find a way to not use two 'withTagged'
           ++ zipM "M-C-" wsKeys [0..] (withNthWorkspace W.shift)
           ++ zipM "M-S-" wsKeys [0..] (\a -> (withNthWorkspace W.shift a
 	  				   >> withNthWorkspace W.greedyView a))
@@ -418,7 +418,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- which denotes layout choice.
 --
 
-myLayout = smartBorders 
+myLayout = onWorkspace genWs start $ smartBorders 
            ( toggleLayouts Full
            $ avoidStruts
            $ onWorkspace mscWs mtile

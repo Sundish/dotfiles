@@ -27,9 +27,9 @@ Config { font               = "xft:Source Code Pro:pixelsize=11:antialias=true:h
                     , Run Com "maaya" [] "maya_date" 600
 	            , Run Com "/home/sundish/Documents/scripts/health_rpg" [] "health_rpg" 50
                     , Run Date "<fc=#A5C261>%I:%M %p</fc>" "date" 10
-                      -- , Run Volume "default" "Master" [ "-t", "<fc=#B87E7E>Vol</fc>: <volume>%"
-                      --                              , "--normal", "#0F829D"
-		      --			      , "--high"  , "#B91E2E" ] 10 > %default:Master% <fn=1>|
+                    , Run Volume "default" "Master" [ "-t", "<fc=#B87E7E>Vol</fc>: <volume>%"
+                                                 , "--normal", "#0F829D"
+		    			         , "--high"  , "#B91E2E" ] 10
 		      -- , Run $ Battery [ "-t", "<fc=#67b500><acstatus></fc>"
 		      --     	    , "-L", "20", "-H", "90"
                       --                 , "-l", "#dc322f"
@@ -50,5 +50,5 @@ Config { font               = "xft:Source Code Pro:pixelsize=11:antialias=true:h
 		    , Run StdinReader]
        , sepChar  = "%"
        , alignSep = "}{"
-       , template = " %StdinReader% }<fc=#8C9440>%maya_date%</fc> : %date%{ %cpu% - %memory% | <fn=1>%health_rpg%</fn> "
+       , template = " %StdinReader% }<fc=#8C9440>%maya_date%</fc> : %date%{ %cpu% - %memory% | %default:Master% | <fn=1>%health_rpg%</fn> "
        }
