@@ -24,7 +24,7 @@ Config { font               = "xft:Source Code Pro:pixelsize=11:antialias=true:h
                                  , "-m", "2", "-c", "0"
                                  , "-L", "3", "-H", "50"
                                  , "--normal", "#0F829D", "--high", "#B91E2E"] 10
-                    , Run Com "maaya" [] "maya_date" 600
+                    , Run Com "maaya" [ ] "maya_date" 600
 	            , Run Com "/home/sundish/Documents/scripts/health_rpg" [] "health_rpg" 50
                     , Run Date "<fc=#A5C261>%I:%M %p</fc>" "date" 10
                     , Run Volume "default" "Master" [ "-t", "<fc=#B87E7E>Vol</fc>: <volume>%"
