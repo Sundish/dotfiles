@@ -357,8 +357,8 @@ myKeysB = [ ("M-<R>",   spawn "xbacklight -inc 5")
           , ("M-o",   spawn "dmenu_run -p 'run::cmd' ")
           , ("M-p d", spawn "ls ~/.datasheets/ | dmenu -i -p 'data::sheet' | xargs -i zathura '~/Documents/datasheets/{}'")
           , ("M-p p", spawn "ls ~/Documents/pdfmans/ | dmenu -i -p 'pdf::store' | xargs -i zathura \"~/Documents/pdfmans/{}\"")
-          , ("M-p s", spawn "passmenu -p 'pass::store'")
-
+          , ("M-p s", spawn "st -c 'passprompt' -g=65x18+470+260 -e passmenu -p 'pass::store'")
+-- st -c 'passprompt' -g=65x18+470+260 -e passmenu
           -- Screenshot Keybindings
           , ("M-s", spawn "flameshot gui") -- Grab the selected area, saves it cache and the clipboard.
           -- , ("M-s", spawn "flameshot full -c") -- Grab the selected area, saves it cache and the clipboard.
@@ -489,6 +489,7 @@ myManageHook = composeOne
     , className =? "Blender"          -?> doFloat
     , className =? "Steam"            -?> doFloat
     , className =? "gnuplot_qt"       -?> doFloat
+    , className =? "passprompt"       -?> doFloat
     -- , className =? "mpv"              -?> (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
     , resource  =? "cover_art"        -?> (insertPosition End Older)
     , currentWs =? "WEB"              -?> (insertPosition End Newer)
