@@ -66,6 +66,7 @@ import XMonad.Actions.PerWorkspaceKeys( bindOn )
 import XMonad.Actions.ShowText
 import XMonad.Actions.TagWindows
 import XMonad.Actions.FocusNth
+import XMonad.Actions.Submap
 import qualified XMonad.Actions.FlexibleResize as X
 
 import qualified XMonad.StackSet as W
@@ -345,7 +346,7 @@ myKeysB = [ ("M-<R>",   spawn "xbacklight -inc 5")
           -- , ("M-i",             dunstSend)
           -- , ("M-<KP_Multiply>", spawn "dunstctl close-all")
           -- , ("M-<KP_Subtract>", spawn "dunstctl close")
-          , ("M-g",           spawn "word-lookup")
+          , ("M-g",           spawn "/home/sundish/Documents/scripts/translate_menu.sh")
           -- , ("M-g e",           spawn "/home/sundish/scripts/translate.sh 0")
           -- , ("M-g s",           spawn "/home/sundish/scripts/translate.sh 1")
 
@@ -355,19 +356,24 @@ myKeysB = [ ("M-<R>",   spawn "xbacklight -inc 5")
 
           -- Dmenu keybindings
           , ("M-o",   spawn "dmenu_run -p 'run::cmd' ")
-          , ("M-p d", spawn "ls ~/.datasheets/ | dmenu -i -p 'data::sheet' | xargs -i zathura '~/Documents/datasheets/{}'")
+          , ("M-p d", spawn "ls ~/Documents/datasheets/ | dmenu -i -p 'data::sheet' | xargs -i zathura '~/Documents/datasheets/{}'")
           , ("M-p p", spawn "ls ~/Documents/pdfmans/ | dmenu -i -p 'pdf::store' | xargs -i zathura \"~/Documents/pdfmans/{}\"")
-          , ("M-p s", spawn "st -c 'passprompt' -g=65x18+470+260 -e passmenu -p 'pass::store'")
+          , ("M-p s", spawn "passmenu")
+          -- , ("M-p s", spawn "st -c 'passprompt' -g=65x18+470+260 -e ~/Documents/scripts/pasmenu")
 -- st -c 'passprompt' -g=65x18+470+260 -e passmenu
           -- Screenshot Keybindings
           , ("M-s", spawn "flameshot gui") -- Grab the selected area, saves it cache and the clipboard.
           -- , ("M-s", spawn "flameshot full -c") -- Grab the selected area, saves it cache and the clipboard.
 
-          -- Layout keybindings
-          , ("M-C-<Space>", sendMessage ToggleLayout)
+          -- Sticky window bindings
           , ("M-i", flashText myTextTheme 1 "beeta'anli'e!" >> withFocused (addTag "ghost"))
           , ("M-S-i", flashText myTextTheme 1 "k'askuntaj!" >> withFocused (delTag "ghost"))
 	  , ("M-C-i", withFocused $ (\x -> windows $ W.float x $ W.RationalRect (7/10) (7/10) (3/10) (3/10)))
+	  -- , ("M-S-b", withFocused $ (\x -> windows $ W.float x $ W.RationalRect (7/10) (1/40) (3/10) (3/10)))
+	  -- , ("M-S-i", withFocused $ (\x -> windows $ W.float x $ W.RationalRect (1/40) (1/40) (3/10) (3/10)))
+	  -- , ("M-S-a", withFocused $ (\x -> windows $ W.float x $ W.RationalRect (1/40) (7/10) (3/10) (3/10)))
+          -- Layout keybindings
+          , ("M-C-<Space>", sendMessage ToggleLayout)
 	  -- (11/20) (11/20) (49/100) (14/29)
           , ("M-<F1>", namedScratchpadAction scratchpads "terminal")
           , ("M-<F2>", namedScratchpadAction scratchpads "htop")

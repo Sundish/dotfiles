@@ -173,7 +173,7 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 
 # Enable Darkmode
 # Type: Bool
-config.set('colors.webpage.darkmode.enabled', False)
+#config.set('colors.webpage.darkmode.enabled', True)
 
 myHomepage = "file:///home/sundish/Documents/homepage/MyHomepage.html"
 searx = "https://searx.ir"
@@ -190,6 +190,8 @@ c.editor.command = ["nvim", "{file}"]
 
 c.url.default_page = myHomepage
 c.url.start_pages = [myHomepage]
+
+# c.downloads.open_dispatcher
 
 # config.bind(',t', 'config-cycle colors.webpage.darkmode.enabled')
 # config.bind(',o', 'config-cycle colors.webpage.darkmode.enabled')
